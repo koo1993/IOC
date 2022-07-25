@@ -29,7 +29,7 @@ class TwitterHandler:
     session = requests.Session()  # so connections are recycled
     # ioc_mapper = {{}}
     twitter_users = []
-    urllib3.disable_warnings()
+    urllib3.disable_warnings() #ignore warning
 
     def __init__(self, token):
         self.auth_token = token
@@ -64,7 +64,7 @@ class TwitterHandler:
 
     def get_unshorten_link(self, url):
         print("====== Attempt to unshorten url {} ========".format(url))
-        resp = self.session.head(url, allow_redirects=True, verify=False, )
+        resp = self.session.head(url, allow_redirects=True, verify=False)
         print("====== After shorten url {} ===============".format(resp.url))
         return resp.url
 
@@ -206,32 +206,4 @@ def create_url(keyword, start_date, end_date, max_results=10):
                     'place.fields': 'full_name,id,country,country_code,geo,name,place_type',
                     'next_token': {}}
     return (search_url, query_params)
-# keyword = "xbox lang:en"
-# start_time = "2021-03-01T00:00:00.000Z"
-# end_time = "2021-03-31T00:00:00.000Z"
-# max_results = 15
-# url = create_url(keyword, start_time,end_time, max_results)
-# json_response = connect_to_endpoint(url[0], headers, url[1])
-# print(json.dumps(json_response, indent=4, sort_keys=True))
 
-
-# os.environ[
-#     'TOKEN'] = 'AAAAAAAAAAAAAAAAAAAAAATtewEAAAAATpLlrw%2FS0dO3BbkbqyRUetYZsuk%3DANl70n7Qpl8HRC3IpK9zt6uB1Fva92TJYKiqKJOPCDFSdUZhXh'
-
-#
-# bearer_token = auth()
-# user_id = get_user_id("cobaltstrikebot", bearer_token)
-# print("\n")
-# print(user_id)
-# tweet_data = get_tweet_list(user_id, bearer_token)
-#
-# for eachData in tweet_data['data']:
-#     print("==========Start of tweeet=============")
-#     print(eachData['text'])
-#     print("==========End of tweeet=============")
-#     textObj = IOCParser(eachData['text'])
-#     listOfIOC = textObj.parse()
-#     print("==========Parse of tweeet=============")
-#     for x in listOfIOC:
-#         print(x.value)
-#     print("==========End Parse of tweeet=============")
