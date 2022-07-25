@@ -1,0 +1,237 @@
+# For sending GET requests from the API
+import requests
+# For saving access tokens and for file management when creating and adding to the dataset
+import os
+# For dealing with json responses we receive from the API
+import json
+# For displaying the data after
+import pandas as pd
+# For saving the response data in CSV format
+import csv
+# For parsing the dates received from twitter in readable formats
+import datetime
+import dateutil.parser
+import unicodedata
+# To add wait time between requests
+import time
+import urllib3
+
+
+
+from KeysConstant import *
+
+
+class TwitterHandler:
+    auth_token = "empty"
+    url_ioc = set()
+    ip_ioc = set()
+    domain_ioc = set()
+    session = requests.Session()  # so connections are recycled
+    # ioc_mapper = {{}}
+    twitter_users = []
+    urllib3.disable_warnings()
+
+    def __init__(self, token):
+        self.auth_token = token
+
+    def check_auth_empty(self):
+        if self.auth_token == "empty":
+            return True
+        else:
+            return False
+
+    def auth(self):
+        return os.getenv('TOKEN')
+
+    def __get_header(self):
+        return {"Authorization": "Bearer {}".format(self.auth_token)}
+
+    def add_tracking_user(self, user):
+        self.twitter_users.append(user)
+
+    def get_user_id(self, user_name):
+        search_url = "https://api.twitter.com/2/users/by/username/" + user_name
+        headers = self.__get_header()
+        response = requests.request("GET", search_url, headers=headers)
+
+        if response.status_code != 200:
+            raise Exception(response.status_code, response.text)
+
+        if "errors" in response.json().keys():
+            raise Exception(user_name + " not found", response.text)
+
+        return response.json()["data"]["id"]
+
+    def get_unshorten_link(self, url):
+        print("====== Attempt to unshorten url {} ========".format(url))
+        resp = self.session.head(url, allow_redirects=True, verify=False, )
+        print("====== After shorten url {} ===============".format(resp.url))
+        return resp.url
+
+    def get_tweet_list(self, user_id, daysbefore):
+        search_url = "https://api.twitter.com/2/users/" + user_id + "/tweets"
+        headers = self.__get_header()
+
+        start_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=daysbefore)
+
+        query_params = {
+            'tweet.fields': 'created_at',
+            'start_time': start_time.isoformat()[:-13] + 'Z',
+            'max_results': 100  # max result
+        }
+
+        response = requests.request("GET", search_url, params=query_params, headers=headers)
+        if response.status_code != 200:
+            raise Exception(response.status_code, response.text)
+        return response.json()
+
+    def get_json_iocparser_url(self, url):
+        api_url = "https://api.iocparser.com/url"
+        payload = {
+            "url": url
+        }
+        headers = {
+            'Content-Type': 'application/json',
+        }
+        response = requests.request("POST", api_url, headers=headers, json=payload)
+        if response.status_code == 204:  # 204 no content
+            print("empty response from IOCparser with url: " + url)
+            return None
+        elif response.status_code != 200:
+            raise Exception(response.status_code + " not coded", response.text)
+        return response.json()
+
+    def get_json_iocparser_text(self, text):
+        api_url = "https://api.iocparser.com/text"
+        payload = {
+            "data": text
+        }
+        headers = {
+            'Content-Type': 'application/json',
+        }
+        response = requests.request("POST", api_url, headers=headers, json=payload, verify=False)
+        if response.status_code != 200:
+            raise Exception(response.status_code, response.text)
+        return response.json()
+
+    def process_tweet_data(self, user_tweet_data):
+        if user_tweet_data['meta']['result_count'] == 0:
+            return
+
+        for data in user_tweet_data['data']:
+            tweeter_text = data['text']
+            if "strike" in tweeter_text.lower():
+                print("~~~~~~~~~~~~~PARSING DATA WITH Word \"STRIKE\"~~~~~~~~~~")
+                iocparser_data = self.get_json_iocparser_text(tweeter_text)
+                print(iocparser_data)
+
+                if iocparser_data['status'] == "error":
+                    print("failed to parse from iocparser.com: " + tweeter_text)
+                    continue
+
+                is_processed_with_url = False
+
+                # process https://twitter.com/cobaltstrikebot format
+                for url in iocparser_data['data']['URL']:
+                    url_to_parse = self.get_unshorten_link(url)
+                    data_to_add = self.get_json_iocparser_url(url_to_parse)
+                    print(data_to_add)
+
+                    if data_to_add == None:
+                        continue
+
+                    if data_to_add['status'] == "error":
+                        print("failed to parse from iocparser.com: " + url_to_parse)
+                        continue
+
+                    if len(data_to_add['data']['URL']) > 0 or len(data_to_add['data']['IPv4']) > 0 or len(
+                            data_to_add['data']['DOMAIN']) > 0:
+                        is_processed_with_url = True
+
+                    self.url_ioc.update(data_to_add['data']['URL'])
+                    self.ip_ioc.update(data_to_add['data']['IPv4'])
+                    self.domain_ioc.update(data_to_add['data']['DOMAIN'])
+
+                # additional to fit https://twitter.com/drb_ra format
+                if not is_processed_with_url:
+                    self.url_ioc.update(iocparser_data['data']['URL'])
+                    self.ip_ioc.update(iocparser_data['data']['IPv4'])
+                    self.domain_ioc.update(iocparser_data['data']['DOMAIN'])
+
+        print("end of loop printing all the set")
+        print(self.url_ioc)
+        print(self.ip_ioc)
+        print(self.domain_ioc)
+
+    def get_tweetdata_from_users(self):
+        for user in self.twitter_users:
+            userid = self.get_user_id(user)
+            data = self.get_tweet_list(userid, 7)
+            print(data)
+            self.process_tweet_data(data)
+
+
+twitterhandler = TwitterHandler(twitter_bearer_token)
+
+twitterhandler.add_tracking_user("cobaltstrikebot")
+twitterhandler.add_tracking_user("drb_ra")
+twitterhandler.add_tracking_user("Unit42_Intel")
+
+twitterhandler.get_tweetdata_from_users()
+
+
+def create_headers(bearer_token):
+    headers = {"Authorization": "Bearer {}".format(bearer_token)}
+    return headers
+
+
+def connect_to_endpoint(url, headers, params, next_token=None):
+    response = requests.request("GET", url, headers=headers)
+    if response.status_code != 200:
+        raise Exception(response.status_code, response.text)
+    return response.json()
+
+
+def create_url(keyword, start_date, end_date, max_results=10):
+    search_url = "https://api.twitter.com/2/users/by/username/wayne_koo?tweet.fields=text"  # Change to the endpoint you want to collect data from
+
+    # change params based on the endpoint you are using
+    query_params = {'query': keyword,
+                    'start_time': start_date,
+                    'end_time': end_date,
+                    'max_results': max_results,
+                    'expansions': 'author_id,in_reply_to_user_id,geo.place_id',
+                    'tweet.fields': 'id,text,author_id,in_reply_to_user_id,geo,conversation_id,created_at,lang,public_metrics,referenced_tweets,reply_settings,source',
+                    'user.fields': 'id,name,username,created_at,description,public_metrics,verified',
+                    'place.fields': 'full_name,id,country,country_code,geo,name,place_type',
+                    'next_token': {}}
+    return (search_url, query_params)
+# keyword = "xbox lang:en"
+# start_time = "2021-03-01T00:00:00.000Z"
+# end_time = "2021-03-31T00:00:00.000Z"
+# max_results = 15
+# url = create_url(keyword, start_time,end_time, max_results)
+# json_response = connect_to_endpoint(url[0], headers, url[1])
+# print(json.dumps(json_response, indent=4, sort_keys=True))
+
+
+# os.environ[
+#     'TOKEN'] = 'AAAAAAAAAAAAAAAAAAAAAATtewEAAAAATpLlrw%2FS0dO3BbkbqyRUetYZsuk%3DANl70n7Qpl8HRC3IpK9zt6uB1Fva92TJYKiqKJOPCDFSdUZhXh'
+
+#
+# bearer_token = auth()
+# user_id = get_user_id("cobaltstrikebot", bearer_token)
+# print("\n")
+# print(user_id)
+# tweet_data = get_tweet_list(user_id, bearer_token)
+#
+# for eachData in tweet_data['data']:
+#     print("==========Start of tweeet=============")
+#     print(eachData['text'])
+#     print("==========End of tweeet=============")
+#     textObj = IOCParser(eachData['text'])
+#     listOfIOC = textObj.parse()
+#     print("==========Parse of tweeet=============")
+#     for x in listOfIOC:
+#         print(x.value)
+#     print("==========End Parse of tweeet=============")
