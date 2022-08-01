@@ -1,0 +1,116 @@
+2022-07-29 13:57:24,125 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 13:57:24,143 - ERROR - melting-cobalt - Nmap not found, please make sure nmap is installed and accessible via path (which nmap)
+2022-07-29 13:58:23,415 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 13:58:23,424 - INFO - melting-cobalt - Scanning for potential Cobalt Strike Team Server IPs
+2022-07-29 13:58:23,439 - INFO - melting-cobalt - Cobalt Strike Team Servers found: 0
+2022-07-29 13:58:23,439 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 13:59:41,149 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 13:59:41,151 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 13:59:41,152 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-07-29 13:59:41,152 - INFO - melting-cobalt - Reducing beacon from: 8.8.8.8 on ports: 
+2022-07-29 14:00:05,077 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-07-29 14:00:05,077 - ERROR - melting-cobalt - Failed to reduce beacon from 8.8.8.8:8008 it is missing x64_config_spawn_to_x64
+2022-07-29 14:00:05,077 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 14:03:45,437 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 14:03:45,440 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 14:03:45,440 - INFO - melting-cobalt - Scanning for 2 ips from file
+2022-07-29 14:03:45,440 - INFO - melting-cobalt - Reducing beacon from: 45.76.191.75 on ports: 
+2022-07-29 14:03:47,502 - ERROR - melting-cobalt - Failed to reduce beacon from 45.76.191.75 it appears to be down
+2022-07-29 14:03:47,502 - INFO - melting-cobalt - Reducing beacon from: 194.135.24.243 on ports: 
+2022-07-29 14:03:49,431 - ERROR - melting-cobalt - Failed to reduce beacon from 194.135.24.243 it appears to be down
+2022-07-29 14:03:49,431 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 14:04:29,016 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 14:04:29,019 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 14:04:29,019 - INFO - melting-cobalt - Scanning for 3 ips from file
+2022-07-29 14:04:29,019 - INFO - melting-cobalt - Reducing beacon from: 45.76.191.75 on ports: 
+2022-07-29 14:04:30,974 - ERROR - melting-cobalt - Failed to reduce beacon from 45.76.191.75 it appears to be down
+2022-07-29 14:04:30,974 - INFO - melting-cobalt - Reducing beacon from: 194.135.24.243 on ports: 
+2022-07-29 14:04:51,803 - INFO - melting-cobalt - Successfully reduced beacon from 194.135.24.243:443
+2022-07-29 14:04:51,803 - INFO - melting-cobalt - Reducing beacon from: 139.59.181.36 on ports: 
+2022-07-29 14:05:09,126 - INFO - melting-cobalt - Successfully reduced beacon from 139.59.181.36:443
+2022-07-29 14:05:09,126 - INFO - melting-cobalt - Wrote 2 beacons to result file: results.json.log
+2022-07-29 14:05:09,127 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 14:16:24,917 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 14:16:24,920 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 14:16:24,920 - INFO - melting-cobalt - Scanning for 3 ips from file
+2022-07-29 14:16:24,920 - INFO - melting-cobalt - Reducing beacon from: 45.76.191.75 on ports: 
+2022-07-29 14:16:49,105 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-07-29 14:16:49,105 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-07-29 14:16:49,105 - ERROR - melting-cobalt - Failed to reduce beacon from 45.76.191.75:8008 it is missing x64_config_spawn_to_x64
+2022-07-29 14:16:49,105 - INFO - melting-cobalt - Reducing beacon from: 194.135.24.243 on ports: 
+2022-07-29 14:17:07,246 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-07-29 14:17:07,247 - ERROR - melting-cobalt - Failed to reduce beacon from 194.135.24.243:8008 it is missing x64_config_spawn_to_x64
+2022-07-29 14:17:07,247 - INFO - melting-cobalt - Reducing beacon from: 139.59.181.36 on ports: 
+2022-07-29 14:17:26,144 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-07-29 14:17:26,144 - ERROR - melting-cobalt - Failed to reduce beacon from 139.59.181.36:8008 it is missing x64_config_spawn_to_x64
+2022-07-29 14:17:26,145 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 14:52:35,326 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 14:52:47,628 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 14:52:48,698 - INFO - melting-cobalt - Scanning for 2 ips from file
+2022-07-29 14:52:52,378 - INFO - melting-cobalt - Reducing beacon from: 194.135.24.243 on ports: 
+2022-07-29 14:52:54,385 - ERROR - melting-cobalt - Failed to reduce beacon from 194.135.24.243 it appears to be down
+2022-07-29 14:52:54,385 - INFO - melting-cobalt - Reducing beacon from: 139.59.181.36 on ports: 
+2022-07-29 14:53:14,532 - INFO - melting-cobalt - Successfully reduced beacon from 139.59.181.36:443
+2022-07-29 14:53:30,188 - INFO - melting-cobalt - Wrote 1 beacons to result file: results.json.log
+2022-07-29 14:53:32,504 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 15:01:39,135 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 15:01:39,144 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 15:01:39,145 - INFO - melting-cobalt - Scanning for 2 ips from file
+2022-07-29 15:01:39,145 - INFO - melting-cobalt - Reducing beacon from: 194.135.24.243 on ports: 
+2022-07-29 15:01:57,004 - INFO - melting-cobalt - Successfully reduced beacon from 194.135.24.243:443
+2022-07-29 15:01:57,004 - INFO - melting-cobalt - Reducing beacon from: 139.59.181.36 on ports: 
+2022-07-29 15:02:15,644 - INFO - melting-cobalt - Successfully reduced beacon from 139.59.181.36:443
+2022-07-29 15:02:15,645 - INFO - melting-cobalt - Wrote 2 beacons to result file: results.json.log
+2022-07-29 15:02:15,645 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 16:15:00,996 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 16:15:00,998 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 16:15:00,998 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-07-29 16:15:00,998 - INFO - melting-cobalt - Reducing beacon from: 192.168.1.1 on ports: 
+2022-07-29 16:15:02,700 - ERROR - melting-cobalt - Failed to reduce beacon from 192.168.1.1 it appears to be down
+2022-07-29 16:15:02,700 - INFO - melting-cobalt - Finished successfully!
+2022-07-29 16:51:02,962 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-07-29 16:51:02,965 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-07-29 16:51:02,966 - INFO - melting-cobalt - Scanning for 4 ips from file
+2022-07-29 16:51:02,966 - INFO - melting-cobalt - Reducing beacon from: 193.56.146.60 on ports: 
+2022-07-29 16:51:04,932 - ERROR - melting-cobalt - Failed to reduce beacon from 193.56.146.60 it appears to be down
+2022-07-29 16:51:04,932 - INFO - melting-cobalt - Reducing beacon from: 193.56.146.61 on ports: 
+2022-07-29 16:51:06,869 - ERROR - melting-cobalt - Failed to reduce beacon from 193.56.146.61 it appears to be down
+2022-07-29 16:51:06,870 - INFO - melting-cobalt - Reducing beacon from: 193.56.146.62 on ports: 
+2022-07-29 16:51:08,787 - ERROR - melting-cobalt - Failed to reduce beacon from 193.56.146.62 it appears to be down
+2022-07-29 16:51:08,788 - INFO - melting-cobalt - Reducing beacon from: 193.56.146.65 on ports: 
+2022-07-29 16:51:10,720 - ERROR - melting-cobalt - Failed to reduce beacon from 193.56.146.65 it appears to be down
+2022-07-29 16:51:10,721 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 09:22:42,651 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 09:22:42,664 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-08-01 09:22:42,665 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-08-01 09:22:42,665 - INFO - melting-cobalt - Reducing beacon from: 103.214.146.5 on ports: 
+2022-08-01 09:22:46,521 - ERROR - melting-cobalt - Failed to reduce beacon from 103.214.146.5:443 it is missing x64_config_spawn_to_x64
+2022-08-01 09:22:46,522 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 09:25:43,480 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 09:25:43,481 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-08-01 09:25:43,481 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-08-01 09:25:43,481 - INFO - melting-cobalt - Reducing beacon from: 47.94.168.172 on ports: 
+2022-08-01 09:26:13,600 - INFO - melting-cobalt - Successfully reduced beacon from 47.94.168.172:443
+2022-08-01 09:26:13,601 - INFO - melting-cobalt - Wrote 1 beacons to result file: results.json.log
+2022-08-01 09:26:13,602 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 09:27:08,669 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 09:27:08,673 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-08-01 09:27:08,674 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-08-01 09:27:08,674 - INFO - melting-cobalt - Reducing beacon from: 47.94.168.172 on ports: 
+2022-08-01 09:27:30,358 - INFO - melting-cobalt - Successfully reduced beacon from 47.94.168.172:443
+2022-08-01 09:27:30,358 - INFO - melting-cobalt - Wrote 1 beacons to result file: results.json.log
+2022-08-01 09:27:30,358 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 09:45:59,377 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 09:45:59,379 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-08-01 09:45:59,379 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-08-01 09:45:59,379 - INFO - melting-cobalt - Reducing beacon from: 47.94.168.172 on ports: 
+2022-08-01 09:46:44,056 - INFO - melting-cobalt - Successfully reduced beacon from 47.94.168.172:443
+2022-08-01 09:46:44,057 - INFO - melting-cobalt - Wrote 1 beacons to result file: results.json.log
+2022-08-01 09:46:44,057 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 10:28:56,621 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 10:28:56,624 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/Cobalt strike/melting-cobalt/ips.txt
+2022-08-01 10:28:56,624 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-08-01 10:28:56,624 - INFO - melting-cobalt - Reducing beacon from: 129.226.3.47 on ports: 
+2022-08-01 10:29:06,497 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-08-01 10:29:06,498 - ERROR - melting-cobalt - Failed to reduce beacon from 129.226.3.47:8008 it is missing x64_config_spawn_to_x64
+2022-08-01 10:29:06,498 - INFO - melting-cobalt - Finished successfully!
