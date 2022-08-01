@@ -17,10 +17,6 @@ import time
 import urllib3
 
 
-
-from KeysConstant import *
-
-
 class TwitterHandler:
     auth_token = "empty"
     url_ioc = set()
@@ -29,7 +25,7 @@ class TwitterHandler:
     session = requests.Session()  # so connections are recycled
     # ioc_mapper = {{}}
     twitter_users = []
-    urllib3.disable_warnings() #ignore warning
+    urllib3.disable_warnings()  # ignore warning
 
     def __init__(self, token):
         self.auth_token = token
@@ -64,7 +60,11 @@ class TwitterHandler:
 
     def get_unshorten_link(self, url):
         print("====== Attempt to unshorten url {} ========".format(url))
-        resp = self.session.head(url, allow_redirects=True, verify=False)
+        try:
+            resp = self.session.head(url, allow_redirects=True, verify=False)
+        except:
+            print("failed to unshorten: " + url)
+            return url
         print("====== After shorten url {} ===============".format(resp.url))
         return resp.url
 
@@ -98,7 +98,8 @@ class TwitterHandler:
             print("empty response from IOCparser with url: " + url)
             return None
         elif response.status_code != 200:
-            raise Exception(response.status_code + " not coded", response.text)
+            print(url + " response code: " + str(response.status_code))
+            return None
         return response.json()
 
     def get_json_iocparser_text(self, text):
@@ -169,13 +170,3 @@ class TwitterHandler:
             data = self.get_tweet_list(userid, 7)
             print(data)
             self.process_tweet_data(data)
-
-
-twitterhandler = TwitterHandler(twitter_bearer_token)
-
-twitterhandler.add_tracking_user("cobaltstrikebot")
-twitterhandler.add_tracking_user("drb_ra")
-twitterhandler.add_tracking_user("Unit42_Intel")
-
-twitterhandler.get_tweetdata_from_users()
-

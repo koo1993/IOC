@@ -114,3 +114,22 @@
 2022-08-01 10:29:06,497 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
 2022-08-01 10:29:06,498 - ERROR - melting-cobalt - Failed to reduce beacon from 129.226.3.47:8008 it is missing x64_config_spawn_to_x64
 2022-08-01 10:29:06,498 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 14:22:10,185 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 14:22:10,191 - INFO - melting-cobalt - Scanning for potential Cobalt Strike Team Server IPs
+2022-08-01 14:22:10,221 - INFO - melting-cobalt - Cobalt Strike Team Servers found: 0
+2022-08-01 14:22:10,221 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 14:22:43,340 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 14:22:43,345 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/IOC/melting-cobalt/ips.txt
+2022-08-01 14:22:43,348 - INFO - melting-cobalt - Scanning for 1 ips from file
+2022-08-01 14:22:43,348 - INFO - melting-cobalt - Reducing beacon from: 129.226.3.47 on ports: 
+2022-08-01 14:22:54,036 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-08-01 14:22:54,036 - ERROR - melting-cobalt - Failed to reduce beacon from 129.226.3.47:8008 it is missing x64_config_spawn_to_x64
+2022-08-01 14:22:54,038 - INFO - melting-cobalt - Finished successfully!
+2022-08-01 15:00:39,159 - INFO - melting-cobalt - INIT - melting-cobalt v1
+2022-08-01 15:00:39,165 - INFO - melting-cobalt - Reading from input file: /home/waynekoo/Desktop/IOC/melting-cobalt/ips.txt
+2022-08-01 15:00:39,166 - INFO - melting-cobalt - Scanning for 11 ips from file
+2022-08-01 15:00:39,166 - INFO - melting-cobalt - Reducing beacon from: 18.143.57.241 on ports: 
+2022-08-01 15:01:03,786 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-08-01 15:01:03,786 - ERROR - melting-cobalt - Nmap error: Expecting value: line 1 column 1 (char 0), parsing output: No Valid Response
+2022-08-01 15:01:03,786 - ERROR - melting-cobalt - Failed to reduce beacon from 18.143.57.241:8008 it is missing x64_config_spawn_to_x64
+2022-08-01 15:01:03,787 - INFO - melting-cobalt - Reducing beacon from: 43.134.230.170 on ports: 
