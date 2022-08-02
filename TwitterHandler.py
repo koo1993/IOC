@@ -72,12 +72,32 @@ class TwitterHandler:
         search_url = "https://api.twitter.com/2/users/" + user_id + "/tweets"
         headers = self.__get_header()
 
+        #get date to stop at
         start_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=daysbefore)
 
         query_params = {
-            'tweet.fields': 'created_at',
-            'start_time': start_time.isoformat()[:-13] + 'Z',
-            'max_results': 100  # max result
+            'tweet.fields': 'created_at', #show created field in the return data
+            'start_time': start_time.isoformat()[:-13] + 'Z', #tweet that is between now to start_time
+            'max_results': 100  # max retrieval result == 100
+        }
+
+        response = requests.request("GET", search_url, params=query_params, headers=headers)
+        if response.status_code != 200:
+            raise Exception(response.status_code, response.text)
+        return response.json()
+
+    def get_tweet_list_nexttoken(self, user_id, daysbefore, nexttoken):
+        search_url = "https://api.twitter.com/2/users/" + user_id + "/tweets"
+        headers = self.__get_header()
+
+        #get date to stop at
+        start_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=daysbefore)
+
+        query_params = {
+            'tweet.fields': 'created_at', #show created field in the return data
+            'start_time': start_time.isoformat()[:-13] + 'Z', #tweet that is between now to start_time
+            'max_results': 100,  # max retrieval result == 100
+            'pagination_token': nexttoken
         }
 
         response = requests.request("GET", search_url, params=query_params, headers=headers)
@@ -165,8 +185,18 @@ class TwitterHandler:
         print(self.domain_ioc)
 
     def get_tweetdata_from_users(self):
+        lookup_days = 7
         for user in self.twitter_users:
             userid = self.get_user_id(user)
-            data = self.get_tweet_list(userid, 7)
+            data = self.get_tweet_list(userid, lookup_days)
             print(data)
             self.process_tweet_data(data)
+
+            # fetch more tweets if theres more than 100 tweets
+            while "next_token" in data['meta']:
+                print("GETTING MORE TWEETS")
+                data = self.get_tweet_list_nexttoken(userid, 7, data['meta']['next_token'])
+                print(data)
+                self.process_tweet_data(data)
+
+
