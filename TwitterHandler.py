@@ -184,8 +184,8 @@ class TwitterHandler:
         print(self.ip_ioc)
         print(self.domain_ioc)
 
-    def get_tweetdata_from_users(self):
-        lookup_days = 7
+    def get_tweetdata_from_users(self, no_of_days):
+        lookup_days = no_of_days
         for user in self.twitter_users:
             userid = self.get_user_id(user)
             data = self.get_tweet_list(userid, lookup_days)
@@ -195,7 +195,7 @@ class TwitterHandler:
             # fetch more tweets if theres more than 100 tweets
             while "next_token" in data['meta']:
                 print("GETTING MORE TWEETS")
-                data = self.get_tweet_list_nexttoken(userid, 7, data['meta']['next_token'])
+                data = self.get_tweet_list_nexttoken(userid, lookup_days, data['meta']['next_token'])
                 print(data)
                 self.process_tweet_data(data)
 

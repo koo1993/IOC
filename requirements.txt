@@ -20,7 +20,6 @@ pyparsing==2.4.7
 python3-nmap==1.5.0
 pytz==2021.1
 PyYAML==5.4.1
-requests==2.25.1
 shodan==1.25.0
 simplejson==3.17.2
 snowballstemmer==2.1.0

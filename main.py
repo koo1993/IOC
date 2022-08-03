@@ -21,7 +21,7 @@ def get_ip_information(ips):
 # twitterhandler.add_tracking_user("KorbenD_Intel")
 # twitterhandler.add_tracking_user("cpardue09")
 # twitterhandler.add_tracking_user("malware_traffic")
-# twitterhandler.get_tweetdata_from_users()
+# twitterhandler.get_tweetdata_from_users(7)
 #
 # ip_ioc = twitterhandler.ip_ioc
 #
