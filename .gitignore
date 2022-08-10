@@ -7,3 +7,5 @@
 __pycache__/KeysConstant.cpython-310.pyc
 AuthKeys.txt
 TwitterHandler.zip
+
+__pycache__/TwitterHandler.cpython-310.pyc
