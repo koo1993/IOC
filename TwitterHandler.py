@@ -61,7 +61,7 @@ class TwitterHandler:
     def get_unshorten_link(self, url):
         print("====== Attempt to unshorten url {} ========".format(url))
         try:
-            resp = self.session.head(url, allow_redirects=True, verify=False)
+            resp = self.session.head(url, allow_redirects=True, verify=False, timeout=3)
         except:
             print("failed to unshorten: " + url)
             return url
@@ -131,7 +131,9 @@ class TwitterHandler:
             'Content-Type': 'application/json',
         }
         response = requests.request("POST", api_url, headers=headers, json=payload, verify=False)
-        if response.status_code != 200:
+        if response.status_code == 204:
+            return None
+        elif response.status_code != 200:
             raise Exception(response.status_code, response.text)
         return response.json()
 
@@ -144,6 +146,10 @@ class TwitterHandler:
             if "strike" in tweeter_text.lower():
                 print("~~~~~~~~~~~~~PARSING DATA WITH Word \"STRIKE\"~~~~~~~~~~")
                 iocparser_data = self.get_json_iocparser_text(tweeter_text)
+
+                if iocparser_data == None:
+                    continue
+
                 print(iocparser_data)
 
                 if iocparser_data['status'] == "error":
