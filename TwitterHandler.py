@@ -130,7 +130,11 @@ class TwitterHandler:
         headers = {
             'Content-Type': 'application/json',
         }
-        response = requests.request("POST", api_url, headers=headers, json=payload, verify=False)
+        try:
+            response = requests.request("POST", api_url, headers=headers, json=payload, verify=False)
+        except:
+            print("failed to pull from iocparser")
+            return None
         if response.status_code == 204:
             return None
         elif response.status_code != 200:
