@@ -48,7 +48,7 @@ class TwitterHandler:
     def get_user_id(self, user_name):
         search_url = "https://api.twitter.com/2/users/by/username/" + user_name
         headers = self.__get_header()
-        response = requests.request("GET", search_url, headers=headers)
+        response = requests.request("GET", search_url, headers=headers, verify=False)
 
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
@@ -81,7 +81,7 @@ class TwitterHandler:
             'max_results': 100  # max retrieval result == 100
         }
 
-        response = requests.request("GET", search_url, params=query_params, headers=headers)
+        response = requests.request("GET", search_url, params=query_params, headers=headers, verify=False)
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
         return response.json()
@@ -100,7 +100,7 @@ class TwitterHandler:
             'pagination_token': nexttoken
         }
 
-        response = requests.request("GET", search_url, params=query_params, headers=headers)
+        response = requests.request("GET", search_url, params=query_params, headers=headers, verify=False,)
         if response.status_code != 200:
             raise Exception(response.status_code, response.text)
         return response.json()
@@ -113,7 +113,7 @@ class TwitterHandler:
         headers = {
             'Content-Type': 'application/json',
         }
-        response = requests.request("POST", api_url, headers=headers, json=payload)
+        response = requests.request("POST", api_url, headers=headers, json=payload, verify=False,)
         if response.status_code == 204:  # 204 no content
             print("empty response from IOCparser with url: " + url)
             return None
