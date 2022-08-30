@@ -149,11 +149,11 @@ for eachscan in data:
     ip_info = get_ip_information(ip)
     eachscan["country_name"] = ip_info["country_name"]
     eachscan['isp'] = ip_info['isp']
-    ip_source = None
+    ip_source = ""
     if ip in twitter_cs_sgip:
         ip_source = ip_source + "twitter "
     if ip in shodan_cs_sgip:
-        ip_source = ip_source + ",shodan "
+        ip_source = ip_source + "shodan "
     eachscan['ip_source'] = ip_source
 
 with open("result.json", "w") as f:
