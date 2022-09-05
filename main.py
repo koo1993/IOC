@@ -9,6 +9,8 @@ from subprocess import Popen, PIPE, CalledProcessError
 
 # todo: organise code
 
+# preload maxmind_database
+maxmind_database = geoip2.database.Reader('./GeoLite/GeoLite2-Country.mmdb')
 
 def get_ip_country(ips):
     r = requests.get("https://api.iplocation.net/?ip=" + ips)
@@ -18,6 +20,14 @@ def get_ip_country(ips):
 def get_ip_information(ips):
     r = requests.get("https://api.iplocation.net/?ip=" + ips)
     return r.json()
+
+def get_maxmind_ip_information(ip):
+    ip_country = "None"
+    try:
+        ip_country = maxmind_database.country(ip).country.iso_code
+    except:
+        pass
+    return ip_country
 
 
 def empty_file_content(filelocation):
@@ -88,10 +98,7 @@ for ip in ip_ioc:
 reader = geoip2.database.Reader('./GeoLite/GeoLite2-Country.mmdb')
 
 for ip in ip_ioc:
-    try:
-        ip_country = reader.country(ip).country.iso_code
-    except:
-        continue
+    ip_country = get_maxmind_ip_information(ip)
     print(ip_country)
     if (ip_country == "SG"):
         print("write ip to file")
@@ -137,18 +144,26 @@ if p.returncode != 0:
 
 print("verificaiton done")
 
-# enrich ip with country_name, isp name?
+# enrich ip with country_name, isp name
 cs_ioc = set()
 f = open('./melting-cobalt/results.json.log', 'r')
 data = json.load(f)
 f.close()
 
+shortened_json = []
+
 for eachscan in data:
     ip = eachscan["ip"]
     cs_ioc.add(ip)
     ip_info = get_ip_information(ip)
-    eachscan["country_name"] = ip_info["country_name"]
-    eachscan['isp'] = ip_info['isp']
+    eachscan["country_iplocation_net"] = ip_info["country_name"]
+    eachscan['isp_iplocation_net'] = ip_info['isp']
+
+    maxmind_ip_loc = get_maxmind_ip_information(ip)
+    eachscan['country_maxmind'] = maxmind_ip_loc
+
+    #trace which source this ip is from
+    ip_loc = get_ip_country(ip)
     ip_source = ""
     if ip in twitter_cs_sgip:
         ip_source = ip_source + "twitter "
@@ -156,8 +171,21 @@ for eachscan in data:
         ip_source = ip_source + "shodan "
     eachscan['ip_source'] = ip_source
 
+    element = {}
+    element["ip"] = eachscan["ip"]
+    element["ip_source"] = eachscan["ip_source"]
+    element["country_iplocation_net"] = eachscan["country_iplocation_net"]
+    element["isp_iplocation_net"] = eachscan["isp_iplocation_net"]
+    element["country_maxmind"] = eachscan["country_maxmind"]
+    shortened_json.append(element)
+
 with open("result.json", "w") as f:
     json.dump(data, f, indent=4, sort_keys=True)
+
+with open("result_shorten.json", "w") as f:
+    json.dump(shortened_json, f, indent=4, sort_keys=True)
+
+
 
 update_cobaltstrike_ip_tracker(cs_ioc)
 

@@ -1,0 +1,107 @@
+[
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "165.22.104.235",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "194.31.53.128",
+        "ip_source": "",
+        "isp_iplocation_net": "Wolfgang Koehler"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "167.71.193.32",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "128.199.138.206",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Hong Kong",
+        "country_maxmind": "SG",
+        "ip": "180.215.90.33",
+        "ip_source": "",
+        "isp_iplocation_net": "CTG Server Ltd."
+    },
+    {
+        "country_iplocation_net": "Hong Kong",
+        "country_maxmind": "HK",
+        "ip": "43.132.254.244",
+        "ip_source": "",
+        "isp_iplocation_net": "Aceville Pte.Ltd."
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "157.245.205.11",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "138.2.87.40",
+        "ip_source": "",
+        "isp_iplocation_net": "Oracle Corporation"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "178.128.58.166",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "165.22.247.3",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "178.128.106.68",
+        "ip_source": "",
+        "isp_iplocation_net": "DigitalOcean LLC"
+    },
+    {
+        "country_iplocation_net": "Hong Kong",
+        "country_maxmind": "SG",
+        "ip": "180.215.90.34",
+        "ip_source": "",
+        "isp_iplocation_net": "CTG Server Ltd."
+    },
+    {
+        "country_iplocation_net": "Singapore",
+        "country_maxmind": "SG",
+        "ip": "8.214.23.44",
+        "ip_source": "",
+        "isp_iplocation_net": "Alibaba.com Singapore E-Commerce Private Limited"
+    },
+    {
+        "country_iplocation_net": "Hong Kong",
+        "country_maxmind": "SG",
+        "ip": "180.215.90.32",
+        "ip_source": "",
+        "isp_iplocation_net": "CTG Server Ltd."
+    },
+    {
+        "country_iplocation_net": "China",
+        "country_maxmind": "CN",
+        "ip": "8.130.174.159",
+        "ip_source": "",
+        "isp_iplocation_net": "Aliyun Computing Co. Ltd"
+    }
+]

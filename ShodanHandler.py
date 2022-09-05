@@ -3,6 +3,8 @@ import json
 from KeysConstant import *
 
 def get_from_shodan():
+
+    print("***************** Fetching Shodan for Cobalt strike server in SG **************************")
     search_url = "https://api.shodan.io/shodan/host/search?key=" + shodan_api_key
 
     query_params = {
@@ -17,5 +19,5 @@ def get_from_shodan():
 
     for eachdata in result_json["matches"]:
         shodan_sg_ip.add(eachdata["ip_str"])
-
+    print(shodan_sg_ip)
     return shodan_sg_ip
