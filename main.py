@@ -85,7 +85,7 @@ with open('datasetip.txt', 'r') as f:
 # check for sg ip from iplocation.net
 for ip in ip_ioc:
     ip_country = get_ip_country(ip)
-    print(ip_country)
+    print("iplocation.net: " + ip + " " + ip_country)
     if (ip_country == "Singapore"):
         print("write ip to file")
         sg_ioc.add(ip)
@@ -99,9 +99,8 @@ reader = geoip2.database.Reader('./GeoLite/GeoLite2-Country.mmdb')
 
 for ip in ip_ioc:
     ip_country = get_maxmind_ip_information(ip)
-    print(ip_country)
+    print("maxmind: " + ip + " " + ip_country)
     if (ip_country == "SG"):
-        print("write ip to file")
         sg_ioc.add(ip)
         with open('./melting-cobalt/sgips_maxmind.txt', 'a') as f:
             f.write(ip + "\n")
@@ -127,7 +126,7 @@ except:
 
 # write sg ip to ips.txt for verification
 for ip in sg_ioc:
-    print(ip)
+    print("sg ip: " + ip)
     with open('./melting-cobalt/ips.txt', 'a') as f:
         f.write(ip + "\n")
 
@@ -169,6 +168,8 @@ for eachscan in data:
         ip_source = ip_source + "twitter "
     if ip in shodan_cs_sgip:
         ip_source = ip_source + "shodan "
+    if ip_source.__eq__(""):
+        ip_scource = ip_scource + "SGIPTracker.txt"
     eachscan['ip_source'] = ip_source
 
     element = {}
